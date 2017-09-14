@@ -1,6 +1,7 @@
 import re
 import base64
 import os
+from optparse import OptionParser
 
 def clearscreen():
     if os.name == "nt":
@@ -39,14 +40,25 @@ def decode(suspect):
                 print "\n\t\t\t\t\tBase64 encoded instance " + str(count)
                 print "\t\t\t\t\t*************************"
                 count+=1
-                print decString
-                print "\t\t\t\t\t*************************"
+                print "\t\t\t\t\t" + decString
+                #print "\t\t\t\t\t*************************"
                 detect(decString)
 
+parser = OptionParser()
+parser.add_option("-d", "--decode", dest="potentialBase64String",
+                  help="string to search and decode", metavar="potentially encoded string")
+(options, args) = parser.parse_args()
 
-clearscreen()
-while True:
-    count = 1
-    base64regex = "(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})"
+count = 1
+base64regex = "(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})"
+
+# set encString to 'None' if no argument was provided
+encString = str(options.potentialBase64String)
+
+if encString == 'None':
+    clearscreen()
     encString = str(raw_input("\nPaste string to be decoded: "))
-    detect(encString)
+
+else:
+    encString = options.potentialBase64String
+detect(encString)
