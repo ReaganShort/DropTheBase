@@ -8,25 +8,25 @@ def clearscreen():
         os.system('cls')
     else:
         os.system('clear')
-    print " _____               _______ _          ____                  "
-    print "|  __ \             |__   __| |        |  _ \                 "
-    print "| |  | |_ __ ___  _ __ | |  | |__   ___| |_) | __ _ ___  ___  "
-    print "| |  | | '__/ _ \| '_ \| |  | '_ \ / _ \  _ < / _` / __|/ _ \ "
-    print "| |__| | | | (_) | |_) | |  | | | |  __/ |_) | (_| \__ \  __/ "
-    print "|_____/|_|  \___/| .__/|_|  |_| |_|\___|____/ \__,_|___/\___| "
-    print "                 | |                                          "
-    print "                 |_|                                          "
-    print "-----------------------------------------"
-    print "/ This program recursively decodes base64 \\"
-    print "| text. If there are multiple layers of   |"
-    print "| encoding, each encoded instance will be |"
-    print "\ printed and numbered.                   /"
-    print "-----------------------------------------"
-    print "        \   ^__^"
-    print "         \  (oo)\_______"
-    print "            (__)\       )\/\\"
-    print "                ||----w |"
-    print "                ||     ||"
+    print(" _____               _______ _          ____                  ")
+    print("|  __ \             |__   __| |        |  _ \                 ")
+    print("| |  | |_ __ ___  _ __ | |  | |__   ___| |_) | __ _ ___  ___  ")
+    print("| |  | | '__/ _ \| '_ \| |  | '_ \ / _ \  _ < / _` / __|/ _ \ ")
+    print("| |__| | | | (_) | |_) | |  | | | |  __/ |_) | (_| \__ \  __/ ")
+    print("|_____/|_|  \___/| .__/|_|  |_| |_|\___|____/ \__,_|___/\___| ")
+    print("                 | |                                          ")
+    print("                 |_|                                          ")
+    print("-------------------------------------------------------------")
+    print("/ This program recursively decodes base64 text. If there are  \\")
+    print("| multiple layers of encoding, each encoded instance will be |")
+    print("| printed and numbered.                                       |")
+    print("\\                                                             /")
+    print("-------------------------------------------------------------")
+    print("        \   ^__^")
+    print("         \  (oo)\_______")
+    print("            (__)\       )\/\\")
+    print("                ||----w |")
+    print("                ||     ||")
 
 def detect(encString):
     suspect = re.findall(base64regex, encString)
@@ -37,11 +37,11 @@ def decode(suspect):
         decString=base64.b64decode(i)
         if all(ord(char) < 128 for char in decString):
             if len(decString) > 3:
-                print "\n\t\t\t\t\tBase64 encoded instance " + str(count)
-                print "\t\t\t\t\t*************************"
+                print("\n\t\t\t\t\tBase64 encoded instance " + str(count))
+                print("\t\t\t\t\t*************************")
                 count+=1
-                print "\t\t\t\t\t" + decString
-                #print "\t\t\t\t\t*************************"
+                print("\t\t\t\t\t" + decString)
+                #print("\t\t\t\t\t*************************")
                 detect(decString)
 
 parser = OptionParser()
